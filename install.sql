@@ -991,6 +991,7 @@ ALTER TABLE Purchasing.PurchaseOrderHeader DROP COLUMN TotalDue;
 
 CREATE SCHEMA Sales
   CREATE TABLE CountryRegionCurrency(
+    CountryRegionCurrencyID SERIAL NOT NULL, -- int
     CountryRegionCode varchar(3) NOT NULL,
     CurrencyCode char(3) NOT NULL,
     ModifiedDate TIMESTAMP NOT NULL CONSTRAINT "DF_CountryRegionCurrency_ModifiedDate" DEFAULT (NOW())
@@ -1028,6 +1029,7 @@ CREATE SCHEMA Sales
     ModifiedDate TIMESTAMP NOT NULL CONSTRAINT "DF_Customer_ModifiedDate" DEFAULT (NOW())
   )
   CREATE TABLE PersonCreditCard(
+    PersonCreditCardID SERIAL NOT NULL, -- int
     BusinessEntityID INT NOT NULL,
     CreditCardID INT NOT NULL,
     ModifiedDate TIMESTAMP NOT NULL CONSTRAINT "DF_PersonCreditCard_ModifiedDate" DEFAULT (NOW())
@@ -1083,6 +1085,7 @@ CREATE SCHEMA Sales
     CONSTRAINT "CK_SalesOrderHeader_Freight" CHECK (Freight >= 0.00)
   )
   CREATE TABLE SalesOrderHeaderSalesReason(
+    SalesOrderHeaderSalesReasonID SERIAL NOT NULL, -- int
     SalesOrderID INT NOT NULL,
     SalesReasonID INT NOT NULL,
     ModifiedDate TIMESTAMP NOT NULL CONSTRAINT "DF_SalesOrderHeaderSalesReason_ModifiedDate" DEFAULT (NOW())
@@ -1104,6 +1107,7 @@ CREATE SCHEMA Sales
     CONSTRAINT "CK_SalesPerson_SalesLastYear" CHECK (SalesLastYear >= 0.00)
   )
   CREATE TABLE SalesPersonQuotaHistory(
+    SalesPersonQuotaHistoryID SERIAL NOT NULL, -- int
     BusinessEntityID INT NOT NULL,
     QuotaDate TIMESTAMP NOT NULL,
     SalesQuota numeric NOT NULL, -- money
@@ -1144,6 +1148,7 @@ CREATE SCHEMA Sales
     CONSTRAINT "CK_SalesTerritory_CostLastYear" CHECK (CostLastYear >= 0.00)
   )
   CREATE TABLE SalesTerritoryHistory(
+    SalesTerritoryHistoryID SERIAL NOT NULL, -- int
     BusinessEntityID INT NOT NULL,  -- A sales person
     TerritoryID INT NOT NULL,
     StartDate TIMESTAMP NOT NULL,
@@ -1179,6 +1184,7 @@ CREATE SCHEMA Sales
     CONSTRAINT "CK_SpecialOffer_MaxQty"  CHECK (MaxQty >= 0)
   )
   CREATE TABLE SpecialOfferProduct(
+    SpecialOfferProductID SERIAL NOT NULL, -- int
     SpecialOfferID INT NOT NULL,
     ProductID INT NOT NULL,
     rowguid uuid NOT NULL CONSTRAINT "DF_SpecialOfferProduct_rowguid" DEFAULT (uuid_generate_v1()), -- ROWGUIDCOL
