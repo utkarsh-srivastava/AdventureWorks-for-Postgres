@@ -12,6 +12,21 @@ const selectedFiles = [
   "PersonCreditCard.csv",
   "CountryRegionCurrency.csv",
   "SpecialOfferProduct.csv",
+  "ProductVendor.csv",
+  "WorkOrderRouting.csv",
+  "ProductProductPhoto.csv",
+  "ProductModelProductDescriptionCulture.csv",
+  "ProductModelIllustration.csv",
+  "ProductListPriceHistory.csv",
+  "ProductInventory.csv",
+  "ProductDocument.csv",
+  "ProductCostHistory.csv",
+  "PersonPhone.csv",
+  "EmailAddress.csv",
+  "BusinessEntityContact.csv",
+  "BusinessEntityAddress.csv",
+  "EmployeePayHistory.csv",
+  "EmployeeDepartmentHistory.csv",
 ]; // Replace with your file names
 
 // Process each file in the folder

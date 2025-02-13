@@ -123,6 +123,7 @@ CREATE SCHEMA Person
     ModifiedDate TIMESTAMP NOT NULL CONSTRAINT "DF_AddressType_ModifiedDate" DEFAULT (NOW())
   )
   CREATE TABLE BusinessEntityAddress(
+    BusinessEntityAddressID SERIAL NOT NULL, -- int
     BusinessEntityID INT NOT NULL,
     AddressID INT NOT NULL,
     AddressTypeID INT NOT NULL,
@@ -135,6 +136,7 @@ CREATE SCHEMA Person
     ModifiedDate TIMESTAMP NOT NULL CONSTRAINT "DF_ContactType_ModifiedDate" DEFAULT (NOW())
   )
   CREATE TABLE BusinessEntityContact(
+    BusinessEntityContactID SERIAL NOT NULL, -- int
     BusinessEntityID INT NOT NULL,
     PersonID INT NOT NULL,
     ContactTypeID INT NOT NULL,
@@ -161,6 +163,7 @@ CREATE SCHEMA Person
     ModifiedDate TIMESTAMP NOT NULL CONSTRAINT "DF_PhoneNumberType_ModifiedDate" DEFAULT (NOW())
   )
   CREATE TABLE PersonPhone(
+    PersonPhoneID SERIAL NOT NULL, -- int
     BusinessEntityID INT NOT NULL,
     PhoneNumber "Phone" NOT NULL,
     PhoneNumberTypeID INT NOT NULL,
@@ -234,6 +237,7 @@ CREATE SCHEMA HumanResources
     CONSTRAINT "CK_Employee_SickLeaveHours" CHECK (SickLeaveHours BETWEEN 0 AND 120)
   )
   CREATE TABLE EmployeeDepartmentHistory(
+    EmployeeDepartmentHistoryID SERIAL NOT NULL, -- int
     BusinessEntityID INT NOT NULL,
     DepartmentID smallint NOT NULL,
     ShiftID smallint NOT NULL, -- tinyint
@@ -243,6 +247,7 @@ CREATE SCHEMA HumanResources
     CONSTRAINT "CK_EmployeeDepartmentHistory_EndDate" CHECK ((EndDate >= StartDate) OR (EndDate IS NULL))
   )
   CREATE TABLE EmployeePayHistory(
+    EmployeePayHistoryID SERIAL NOT NULL, -- int
     BusinessEntityID INT NOT NULL,
     RateChangeDate TIMESTAMP NOT NULL,
     Rate numeric NOT NULL, -- money
@@ -465,6 +470,7 @@ CREATE SCHEMA Production
     CONSTRAINT "CK_Product_SellEndDate" CHECK ((SellEndDate >= SellStartDate) OR (SellEndDate IS NULL))
   )
   CREATE TABLE ProductCostHistory(
+    ProductCostHistoryID SERIAL NOT NULL, -- int
     ProductID INT NOT NULL,
     StartDate TIMESTAMP NOT NULL,
     EndDate TIMESTAMP NULL,
@@ -480,6 +486,7 @@ CREATE SCHEMA Production
     ModifiedDate TIMESTAMP NOT NULL CONSTRAINT "DF_ProductDescription_ModifiedDate" DEFAULT (NOW())
   )
   CREATE TABLE ProductDocument(
+    ProductDocumentID SERIAL NOT NULL, -- int
     ProductID INT NOT NULL,
     Doc varchar NOT NULL, -- hierarchyid, will become DocumentNode
     ModifiedDate TIMESTAMP NOT NULL CONSTRAINT "DF_ProductDocument_ModifiedDate" DEFAULT (NOW())
@@ -494,6 +501,7 @@ CREATE SCHEMA Production
     CONSTRAINT "CK_Location_Availability" CHECK (Availability >= 0.00)
   )
   CREATE TABLE ProductInventory(
+    ProductInventoryID SERIAL NOT NULL, -- int
     ProductID INT NOT NULL,
     LocationID smallint NOT NULL,
     Shelf varchar(10) NOT NULL,
@@ -505,6 +513,7 @@ CREATE SCHEMA Production
     CONSTRAINT "CK_ProductInventory_Bin" CHECK (Bin BETWEEN 0 AND 100)
   )
   CREATE TABLE ProductListPriceHistory(
+    ProductListPriceHistoryID SERIAL NOT NULL, -- int
     ProductID INT NOT NULL,
     StartDate TIMESTAMP NOT NULL,
     EndDate TIMESTAMP NULL,
@@ -519,11 +528,13 @@ CREATE SCHEMA Production
     ModifiedDate TIMESTAMP NOT NULL CONSTRAINT "DF_Illustration_ModifiedDate" DEFAULT (NOW())
   )
   CREATE TABLE ProductModelIllustration(
+    ProductModelIllustrationID SERIAL NOT NULL, -- int
     ProductModelID INT NOT NULL,
     IllustrationID INT NOT NULL,
     ModifiedDate TIMESTAMP NOT NULL CONSTRAINT "DF_ProductModelIllustration_ModifiedDate" DEFAULT (NOW())
   )
   CREATE TABLE ProductModelProductDescriptionCulture(
+    ProductModelProductDescriptionCultureID SERIAL NOT NULL, -- int
     ProductModelID INT NOT NULL,
     ProductDescriptionID INT NOT NULL,
     CultureID char(6) NOT NULL,
@@ -538,6 +549,7 @@ CREATE SCHEMA Production
     ModifiedDate TIMESTAMP NOT NULL CONSTRAINT "DF_ProductPhoto_ModifiedDate" DEFAULT (NOW())
   )
   CREATE TABLE ProductProductPhoto(
+    ProductProductPhotoID SERIAL NOT NULL, -- int
     ProductID INT NOT NULL,
     ProductPhotoID INT NOT NULL,
     "primary" "Flag" NOT NULL CONSTRAINT "DF_ProductProductPhoto_Primary" DEFAULT (false),
@@ -604,6 +616,7 @@ CREATE SCHEMA Production
     CONSTRAINT "CK_WorkOrder_EndDate" CHECK ((EndDate >= StartDate) OR (EndDate IS NULL))
   )
   CREATE TABLE WorkOrderRouting(
+    WorkOrderRoutingID SERIAL NOT NULL, -- int
     WorkOrderID INT NOT NULL,
     ProductID INT NOT NULL,
     OperationSequence smallint NOT NULL,
@@ -892,6 +905,7 @@ ALTER TABLE Production.ProductDocument DROP COLUMN rowguid;
 
 CREATE SCHEMA Purchasing
   CREATE TABLE ProductVendor(
+    ProductVendorID SERIAL NOT NULL, -- int
     ProductID INT NOT NULL,
     BusinessEntityID INT NOT NULL,
     AverageLeadTime INT NOT NULL,
